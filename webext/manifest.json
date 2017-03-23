@@ -1,0 +1,45 @@
+{
+	"manifest_version": 2,
+	"name": "ECSBAS-WebExtension",
+	"version": "1.0",
+	"description": "Access bookmarks via ECSBAS",
+	"homepage_url": "https://github.com/cshu/ECSBAS",
+	"icons": {
+		"48": "icons/48.png"
+	},
+	"permissions": [
+		"*://*/*",
+		"activeTab",
+		"alarms",
+		"bookmarks",
+		"browsingData",
+		"contextMenus",
+		"contextualIdentities",
+		"cookies",
+		"downloads",
+		"downloads.open",
+		"history",
+		"identity",
+		"idle",
+		"management",
+		"nativeMessaging",
+		"notifications",
+		"sessions",
+		"storage",
+		"tabs",
+		"topSites",
+		"webNavigation",
+		"webRequest",
+		"webRequestBlocking"
+	],
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": ["contentscr.js"],
+			"run_at": "document_start"
+		}
+	],
+	"options_ui":{
+		"page":"options/options.htm"
+	}
+}
