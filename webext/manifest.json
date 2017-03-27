@@ -14,7 +14,6 @@
 		"bookmarks",
 		"browsingData",
 		"contextMenus",
-		"contextualIdentities",
 		"cookies",
 		"downloads",
 		"downloads.open",
@@ -39,6 +38,9 @@
 			"run_at": "document_start"
 		}
 	],
+	"background":{
+		"scripts":["bg.js"]
+	},
 	"options_ui":{
 		"page":"options/options.htm"
 	}
