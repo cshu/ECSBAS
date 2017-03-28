@@ -8,7 +8,7 @@ Remove the debugging printing for errors in JavaScript
 Note the flags for writing GUI binary instead of console binary. `go install -ldflags -H=windowsgui github.com/cshu/ecsbas`
 (change `DEFAULT_INTERFACE` constant to build alternative versions of executable)
 
-Dependencies:
+Acknowledgements:
 This work uses SQLite (http://sqlite.org/).
 This work uses text-encoding (https://github.com/inexorabletash/text-encoding).
 This work uses Reset CSS (http://meyerweb.com/eric/tools/css/reset/).
