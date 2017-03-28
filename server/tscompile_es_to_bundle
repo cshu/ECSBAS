@@ -1,0 +1,2 @@
+tsc --outFile bundle.js --allowJs --alwaysStrict --allowUnreachableCode ${envvarpath_esrs}/polyfill.es.js ${envvarpath_esrs}/min-weakmap.es.js ${envvarpath_esrs}/esrs.es.js ecsbas.es.js index.es.js
+tsc --outFile bundle-bm.js --allowJs --alwaysStrict --allowUnreachableCode ${envvarpath_esrs}/polyfill.es.js ${envvarpath_esrs}/min-weakmap.es.js ${envvarpath_esrs}/esrs.es.js ecsbas.es.js bm.es.js

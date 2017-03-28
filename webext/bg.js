@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 	//chrome.tabs.executeScript({code:'window.open()'});
 	//chrome.tabs.duplicate(sender.tab.id);
 	if(message){
-		chrome.tabs.create({url:message});
+		chrome.tabs.create({url:message,index:sender.tab.index});
 	}else{
 		chrome.tabs.remove(sender.tab.id);
 	}
