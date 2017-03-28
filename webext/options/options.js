@@ -1,3 +1,4 @@
+//todo add option to disable clicking 3 times bookmarking
 function get_lastargasfuncforthen(arg0,arg1){//mitigate incompatibility between firefox n chrome
 	//chrome.storage.local.get(arg0).then(arg1);
 	chrome.storage.local.get(arg0,arg1);

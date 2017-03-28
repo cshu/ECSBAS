@@ -649,7 +649,12 @@ void db(void)noexcept{
 						CATCH_SET_SUE_THROWs(;)
 						break;
 					case (unsigned char)'i':{
-							string systemstr("run-external-cmd ");//todo call go function directly, bc unlike shared library, executable may not be found even if it's under the same directory as this program. Or alternatively, use filesystem::system_complete(argv[0]) to find directory of program file?
+#ifdef _WIN32
+#define RUNEXTERNALCMD "run-external-cmd "
+#else
+#define RUNEXTERNALCMD "./run-external-cmd "
+#endif
+							string systemstr(RUNEXTERNALCMD);//todo call go function directly, bc unlike shared library, executable may not be found even if it's under the same directory as this program. Or alternatively, use filesystem::system_complete(argv[0]) to find directory of program file?
 							auto notep=e_p;
 							INIT_TRYs(slw_prestmt sstmt(databaseA, LITERAL_COMMA_SIZE("select v from memoizedcfg_t where k='TEXTNOTE_DIR' and not exists(select * from sp_text_notes where v=d and f collate nocase =?)"));)
 							
@@ -703,7 +708,7 @@ void db(void)noexcept{
 							break;
 						}
 					case (unsigned char)'I':{
-							string systemstr("run-external-cmd ");
+							string systemstr(RUNEXTERNALCMD);
 							auto notep=e_p;
 							auto dnmlen=strlen((char *)rb+OFF);
 							INIT_TRYs(slw_prestmt sstmt(databaseA, LITERAL_COMMA_SIZE("select 0 from sp_text_notes where d=? and f collate nocase =?"));)
@@ -839,7 +844,7 @@ void db(void)noexcept{
 						}
 						break;
 					case (unsigned char)'e':{
-							string systemstr("run-external-cmd ");
+							string systemstr(RUNEXTERNALCMD);
 							auto notep=e_p;
 							INIT_TRYs(slw_prestmt sstmt(databaseA, LITERAL_COMMA_SIZE("select v from memoizedcfg_t where k='TEXTNOTE_MAIN_EDITOR'"));)
 							auto ib=sqlite3_step(sstmt.s.pstmt);

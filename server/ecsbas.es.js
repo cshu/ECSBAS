@@ -9,7 +9,8 @@
 //use <a> can be better than <div>, main reason is that when you right click on <a> you have the option to open in new tab, which can be exploited for some feature using new tab
 //using placeholder of input is okay, though it seems not recommended (mozilla.org)
 
-
+//note sometimes you cannot use keyup bc if you go to alert page, and press Enter key to escape (keydown), then keyup fires immediately (so you go to alert page again if focus is on some text input)
+//fixme `keydown` in text input doesn't work well with `click` in anchor on ubuntu. Both can be fired all together by a single Enter. (this is already disscussed in note, but there doesn't seem to be a clear solution.)
 
 
 window.onerror = function(messageOrEvent, source, lineno, colno, error) {
@@ -570,7 +571,7 @@ function moduleview(nm){
 			elem.appendChild(he);
 			textnote.h_filenm=document.createElement('input');
 			he.appendChild(textnote.h_filenm);
-			textnote.h_filenm.onkeydown=okey_createnote;//note you cannot use keyup bc if you go to alert page, and press Enter key to escape (keydown), then keyup fires immediately (so you go to alert page again)
+			textnote.h_filenm.onkeydown=okey_createnote;
 			var he=document.createElement('label');
 			he.textContent='Folder Name: ';
 			elem.appendChild(he);

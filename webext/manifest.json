@@ -2,7 +2,12 @@
 	"manifest_version": 2,
 	"name": "ECSBAS Bookmark Checker",
 	"version": "1.0",
-	"description": "Access ECSBAS bookmarks",
+	"applications": {
+		"gecko": {
+			"strict_min_version": "52.0"
+		}
+	},
+	"description": "Access ECSBAS (https://github.com/cshu/ECSBAS/releases) bookmarks. Use shortcut (CTRL-Y by default) or click 3 times to add/check the active page. HTML can be saved as local archive, and compared with any future version when it's checked again.",
 	"homepage_url": "https://github.com/cshu/ECSBAS",
 	"icons": {
 		"48": "icons/48.png"
@@ -12,21 +17,16 @@
 		"activeTab",
 		"alarms",
 		"bookmarks",
-		"browsingData",
 		"contextMenus",
 		"cookies",
 		"downloads",
 		"downloads.open",
 		"history",
-		"identity",
 		"idle",
-		"management",
 		"nativeMessaging",
 		"notifications",
-		"sessions",
 		"storage",
 		"tabs",
-		"topSites",
 		"webNavigation",
 		"webRequest",
 		"webRequestBlocking"
