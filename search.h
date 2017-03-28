@@ -1,3 +1,4 @@
+//don't add #pragma once
 
 template<class T1,class T2,class T3>
 void addtextnoteseresultstotmp(const T1 &firstcolv,const T2 str,T3 len){

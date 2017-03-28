@@ -1,3 +1,4 @@
+//don't add #pragma once
 
 #define specialized_sql 130
 #define wordsense 69

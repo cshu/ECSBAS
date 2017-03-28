@@ -1,4 +1,4 @@
-#pragma once
+//don't add #pragma once
 
 #define SQLITE_TRANSIENT_STATIC_BEF_FIN SQLITE_TRANSIENT//not sure if SQLITE_TRANSIENT can be used when buffer is const before finalization, so use this macro, may switch to SQLITE_STATIC for better performance
 

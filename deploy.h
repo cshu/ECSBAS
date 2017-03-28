@@ -1,4 +1,4 @@
-#pragma once
+//don't add #pragma once
 
 //note you might think single-argument verb is a misnomer (but rather single-parameter), but in predicate logic and language predicate (grammar), the wording "argument" seems more common. Besides, SA verb may be regarded as single-arity/single-ary verb.
 
