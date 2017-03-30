@@ -8,9 +8,10 @@
 		}
 	},
 	"description": "Access ECSBAS (https://github.com/cshu/ECSBAS/releases) bookmarks. Use shortcut (CTRL-Y by default) or click 3 times to add/check the active page. HTML can be saved as local archive, and compared with any future version when it's checked again.",
-	"homepage_url": "https://github.com/cshu/ECSBAS",
+	"homepage_url": "https://github.com/cshu/ECSBAS/tree/master/webext",
 	"icons": {
-		"48": "icons/48.png"
+		"48": "icons/48.png",
+		"128": "icons/128.png"
 	},
 	"permissions": [
 		"*://*/*",

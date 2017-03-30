@@ -8,6 +8,7 @@ The Ubuntu Modifications addon should be disabled, otherwise `keydown` fires twi
 Compile:
 Remove the first line under "permissions" in manifest.json if not it's necessary (the wildcard url).
 Remove the "applications" in manifest.json if not targeting firefox, cuz other browsers don't support it.
+Description is too long for chrome.
 Remove the debugging printing for errors in JavaScript.
 There is a flag for writing GUI binary instead of console binary: `go install -ldflags -H=windowsgui github.com/cshu/ecsbas`.
 (Change `DEFAULT_INTERFACE` constant to build alternative versions of executable)
