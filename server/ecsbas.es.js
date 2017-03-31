@@ -1425,7 +1425,7 @@ function crdivfornote(sid,dirnfilenm,syno,fntextupdate,rowforremoval){
 				}
 				postreqforarraybuffer(new Blob([new Uint8Array([tc.text_note,'u'.charCodeAt(0)]),sid,selfolder,new Uint8Array(1),textin.value]),alertifarrbufneoff,function(){
 					fnforesc();
-					seresnoteti.firstChild.textContent=selelem.value+'/'+textin.value;
+					seresnoteti.firstChild.textContent=selfolder+'/'+textin.value;
 					if(fntextupdate)fntextupdate(seresnoteti.firstChild.textContent);
 				});
 			};

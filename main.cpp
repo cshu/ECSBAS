@@ -2141,6 +2141,7 @@ void db(void)noexcept{
 		//CATCH_SET_SUE_THROWs(;)
 		CATCH_SET_SUE_THROWs(;)
 		after_db_close:
+		clog<<"<\n"<<flush;
 		//note push event is not necessary when the shutdown comes from SDL_QUIT, but doing so doesn't hurt, then let it be
 		//note push event should be done before setting reslen, in case the shutdown comes from SDL_QUIT, to make sure SDL_PushEvent is called before SDL_Quit()
 		sdl_pushevent_userevent();
@@ -2169,7 +2170,7 @@ void db(void)noexcept{
 }
 
 void reqshutdowndb(void){
-	unsigned char ucbuf=64;//shutdown
+	unsigned char ucbuf=shutdown;
 	void *rph;
 	int lph;
 	newreq(1,&ucbuf,&rph,&lph);
