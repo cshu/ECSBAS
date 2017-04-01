@@ -73,7 +73,6 @@ static void errorLogCallback(void *pArg, int iErrCode, const char *zMsg)noexcept
 
 
 
-//undone msvc specific? use macro for dllexport and so on.
 extern "C" CPPRS_LINK_WITH_C void showwin(void);
 extern "C" CPPRS_LINK_WITH_C void newreq(long long,unsigned char *,void **,int *);
 extern "C" CPPRS_LINK_WITH_C unsigned char waituntildbisready(void);
@@ -1679,8 +1678,8 @@ void db(void)noexcept{
 									tyofbinding.push_back(true);
 									break;
 								case VERB_FILENAME_CONTAINS_TEXT:
-									if(rb[off]){auto &lit="(t=" XSTR(text_note) " and i in(select i from sp_text_notes where instr(lower(f),lower(?))))"; sql.insert(sql.end(),lit,(const char *)(&lit+1)-1);}
-									else{auto &lit="(t<>" XSTR(text_note) " or i not in(select i from sp_text_notes where instr(lower(f),lower(?))))"; sql.insert(sql.end(),lit,(const char *)(&lit+1)-1);}
+									if(rb[off]){auto &lit="(t=" XSTR(text_note) " and i in(select s from sp_text_notes where instr(lower(f),lower(?))))"; sql.insert(sql.end(),lit,(const char *)(&lit+1)-1);}
+									else{auto &lit="(t<>" XSTR(text_note) " or i not in(select s from sp_text_notes where instr(lower(f),lower(?))))"; sql.insert(sql.end(),lit,(const char *)(&lit+1)-1);}
 									off+=1+sizeof id;
 									texttobebound.push_back((char *)rb+off);
 									off+=strlen((char *)rb+off)+1;
@@ -1706,18 +1705,21 @@ void db(void)noexcept{
 							INIT_TRYs(slw_prestmt sstmt(databaseA, sql.data(), sql.size());)
 							decltype(int64tobebound)::size_type int64index=0;
 							decltype(texttobebound)::size_type textindex=0;
-							for(int bindindex=0;bindindex<tyofbinding.size();++bindindex){
+							for(int bindindex=0;bindindex<tyofbinding.size();){
 								if(tyofbinding[bindindex]){
 									++bindindex;
-									sqlite3_int64 id;
-									memcpy(&id,texttobebound[textindex]-sizeof id,sizeof id);
-									if(id==VERB_FILENAME_CONTAINS_TEXT){
-										auto ib=sqlite3_bind_text(sstmt.s.pstmt,bindindex,texttobebound[textindex],-1,SQLITE_TRANSIENT_STATIC_BEF_FIN);
-										if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
-									}else{
-										auto ib=sqlite3_bind_blob(sstmt.s.pstmt,bindindex,texttobebound[textindex],strlen(texttobebound[textindex]),SQLITE_TRANSIENT_STATIC_BEF_FIN);
-										if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
-									}
+									auto ib=sqlite3_bind_text(sstmt.s.pstmt,bindindex,texttobebound[textindex],-1,SQLITE_TRANSIENT_STATIC_BEF_FIN);
+									if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
+									//remove no need to discriminate blob and text
+									//sqlite3_int64 id;
+									//memcpy(&id,texttobebound[textindex]-sizeof id,sizeof id);
+									//if(id==VERB_FILENAME_CONTAINS_TEXT){
+									//	auto ib=sqlite3_bind_text(sstmt.s.pstmt,bindindex,texttobebound[textindex],-1,SQLITE_TRANSIENT_STATIC_BEF_FIN);
+									//	if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
+									//}else{
+									//	auto ib=sqlite3_bind_blob(sstmt.s.pstmt,bindindex,texttobebound[textindex],strlen(texttobebound[textindex]),SQLITE_TRANSIENT_STATIC_BEF_FIN);
+									//	if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
+									//}
 									++textindex;
 								}else{
 									++bindindex;
