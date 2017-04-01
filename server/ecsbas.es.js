@@ -10,7 +10,6 @@
 //using placeholder of input is okay, though it seems not recommended (mozilla.org)
 
 //note sometimes you cannot use keyup bc if you go to alert page, and press Enter key to escape (keydown), then keyup fires immediately (so you go to alert page again if focus is on some text input)
-//fixme `keydown` in text input doesn't work well with `click` in anchor on ubuntu. Both can be fired all together by a single Enter. (this is already disscussed in note, but there doesn't seem to be a clear solution.)
 
 
 window.onerror = function(messageOrEvent, source, lineno, colno, error) {
@@ -131,7 +130,7 @@ function promptmsg(msg,cb){
 		elem.appendChild(document.createElement('label')).textContent=msg;
 		document.body.firstElementChild.style.display='none';
 		insBeforeFirstChild(document.body,elem);
-		elem.lastChild.appendChild(document.createElement('input')).focus();
+		elem.lastChild.appendChild(createTextInputPreventDefaultWhenEnterKeyDown()).focus();
 		elem.lastChild.lastChild.onkeydown=function(ke){
 			if(ke.keyCode!==0x0d)return;
 			cb(this.value);
@@ -310,7 +309,7 @@ function makepredverbrow(useverbin,id,text){
 function addrowsforverb(sep){
 	sep.parentNode.insertBefore(createAnchorClelem(),sep).text=sep.text;
 	sep.previousSibling.onclick=oc_separator;
-	sep.parentNode.insertBefore(document.createElement('input'),sep).placeholder='Use Verb: ';
+	sep.parentNode.insertBefore(createTextInputPreventDefaultWhenEnterKeyDown(),sep).placeholder='Use Verb: ';
 	sep.previousSibling.focus();
 	sep.previousSibling.onkeydown=function(ke){
 		if(ke.keyCode!==0x0d)return;
@@ -325,7 +324,7 @@ function addrowsforverb(sep){
 		case ''://Text
 		case 't':
 			makepredverbrow(this,pred.VERB_CONTAINS_TEXT,'Text');
-			this.parentNode.insertBefore(document.createElement('input'),this).onkeydown=function(ke){
+			this.parentNode.insertBefore(createTextInputPreventDefaultWhenEnterKeyDown(),this).onkeydown=function(ke){
 				if(ke.keyCode!==0x0d)return;
 				search.h_submit.click();
 			};
@@ -358,7 +357,7 @@ function oc_separator(){
 		var elem=document.createElement('div');
 		insBeforeFirstChild(elem,createAnchorEscelem());
 		elem.insertAdjacentHTML('beforeend', '<div class="fixedtip" >Format of separator is <b>\\)*(OR|AND|)\\(*</b> (case-insensitive). Empty separator is the same as <b>AND</b>.</div>');
-		var setextin=elem.appendChild(document.createElement('input'));
+		var setextin=elem.appendChild(createTextInputPreventDefaultWhenEnterKeyDown());
 		setextin.value=this.text;
 		elem.firstChild.onclick=function(){
 			if(seseparatorreadytosubmit(setextin.value)===undefined)alertmsg('Invalid separator. (May temporarily leave it at that. But cannot submit it.)');
@@ -569,7 +568,7 @@ function moduleview(nm){
 			var he=document.createElement('label');
 			he.textContent='Create Note With Filename: ';
 			elem.appendChild(he);
-			textnote.h_filenm=document.createElement('input');
+			textnote.h_filenm=createTextInputPreventDefaultWhenEnterKeyDown();
 			he.appendChild(textnote.h_filenm);
 			textnote.h_filenm.onkeydown=okey_createnote;
 			var he=document.createElement('label');
@@ -581,9 +580,8 @@ function moduleview(nm){
 			}
 			textnote.h_foldernm.add(new Option('<Specify a new folder name>'));
 			he.appendChild(textnote.h_foldernm);
-			textnote.h_foldernmtext=document.createElement('input');
+			textnote.h_foldernmtext=createTextInputPreventDefaultWhenEnterKeyDown();
 			elem.appendChild(textnote.h_foldernmtext);
-			textnote.h_foldernmtext.type='text';
 			textnote.h_foldernmtext.style.display='none';
 			textnote.h_foldernm.onchange=function(){
 				var selfolder=folderlist[this.selectedIndex];
@@ -669,7 +667,7 @@ function moduleview(nm){
 		elem.appendChild(createAnchorEscelem());
 		elem.appendChild(document.createElement('label'));
 		elem.lastChild.textContent='Search description of SA verbs: ';
-		elem.lastChild.appendChild(document.createElement('input'));
+		elem.lastChild.appendChild(createTextInputPreventDefaultWhenEnterKeyDown());
 		elem.lastChild.lastChild.onkeydown=function(ke){
 			if(ke.keyCode!==0x0d)return;
 			if(!this.value)return;
@@ -819,7 +817,7 @@ function showwordgrouppage(id,fntextupdate,rowforremoval){
 }
 function appendLabelAndInput(elem,lbltext){
 	elem.appendChild(document.createElement('label')).textContent=lbltext;
-	elem.lastChild.appendChild(document.createElement('input'));
+	elem.lastChild.appendChild(createTextInputPreventDefaultWhenEnterKeyDown());
 }
 function seremoverownsepabove(useverbin){
 	if(useverbin.previousSibling.tagName==='INPUT'){
@@ -907,7 +905,7 @@ function listverbsforsel(arrbuf,useverbin){
 			case 'URL':
 			case 'Filename':
 			case 'Desc':
-				useverbin.parentNode.insertBefore(document.createElement('input'),useverbin).onkeydown=function(ke){
+				useverbin.parentNode.insertBefore(createTextInputPreventDefaultWhenEnterKeyDown(),useverbin).onkeydown=function(ke){
 					if(ke.keyCode!==0x0d)return;
 					search.h_submit.click();
 				};
@@ -1399,18 +1397,16 @@ function crdivfornote(sid,dirnfilenm,syno,fntextupdate,rowforremoval){
 			var dirnfilenm=seresnoteti.firstChild.textContent;
 			selelem.value=dirnfilenm.slice(0,dirnfilenm.indexOf('/'));
 			elem.appendChild(he);
-			var foldernmtext=document.createElement('input');
+			var foldernmtext=createTextInputPreventDefaultWhenEnterKeyDown();
 			elem.appendChild(foldernmtext);
-			foldernmtext.type='text';
 			foldernmtext.style.display='none';
 			selelem.onchange=function(){
 				foldernmtext.style.display=selelem.selectedIndex+1===selelem.length?'':'none';
 			};
 			var he=document.createElement('label');
 			he.textContent='Filename: ';
-			var textin=document.createElement('input');
+			var textin=createTextInputPreventDefaultWhenEnterKeyDown();
 			he.appendChild(textin);
-			textin.type='text';
 			textin.value=dirnfilenm.slice(dirnfilenm.indexOf('/')+1);
 			elem.appendChild(he);
 			elem.appendChild(createAnchorClelem());

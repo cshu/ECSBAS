@@ -153,6 +153,7 @@ var exitl sync.Mutex
 var exitf bool//add this bool bc i'm paranoid, it should be unnecessary
 var listener net.Listener
 func main() {
+	//todo check new release and alert about downlaoding new version?
 	log.SetFlags(log.LstdFlags|log.Llongfile)
 	e_customizable:=os.Getenv("RESOURCE_STORE_COMM")
 	if e_customizable==""{
