@@ -12,10 +12,10 @@
 
 
 if(window.location.pathname==='/cef9fd58ade54ca086ac66669f49dc86'){
-	//var ecsbash=GM_getValue("ecsbash")
-	//if(!ecsbash)return;
-	//window.name=ecsbash;
-	//GM_deleteValue('ecsbash');
+	var ecsbash=GM_getValue("ecsbash")
+	if(!ecsbash)return;
+	window.name=ecsbash;
+	GM_deleteValue('ecsbash');
 }else{
 	var sc=0x59;//Y
 	var ecsbasp='http://127.0.0.1:28422/';
@@ -29,7 +29,8 @@ if(window.location.pathname==='/cef9fd58ade54ca086ac66669f49dc86'){
 	}
 	window.addEventListener('keydown',function(ke){
 		if(ke.ctrlKey&&ke.keyCode===sc){
-			GM_openInTab(ecsbasp,false).name=mkstrforbm();
+			GM_setValue('ecsbash',mkstrforbm());
+			GM_openInTab(ecsbasp,false);
 		}
 	},true);
 }
