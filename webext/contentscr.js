@@ -48,7 +48,7 @@ if(window.location.pathname==='/cef9fd58ade54ca086ac66669f49dc86'){
 			}
 		}
 		window.addEventListener('keydown',function(ke){
-			if(ke.ctrlKey&&!key.altKey&&!key.shiftKey&&ke.keyCode===sc){
+			if(ke.ctrlKey&&!ke.altKey&&!ke.shiftKey&&ke.keyCode===sc){
 				set_lastargasfuncforthen({ecsbash:mkstrforbm()},()=>{chrome.runtime.sendMessage(ecsbasp);});
 			}
 		},true);
