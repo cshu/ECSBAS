@@ -35,40 +35,40 @@ func handlerfunc(w http.ResponseWriter, r *http.Request) {
 
 	//no need to defer recover(). If ServeHTTP panics, the server will recover it and log
 	if r.Method=="GET"{
-		var bytes []byte
+		var filebytes []byte
 		var err error
 		switch r.URL.Path{
 		case "/favicon.ico":
-			bytes,err=ioutil.ReadFile("favicon.ico")
+			filebytes,err=ioutil.ReadFile("favicon.ico")
 			if err!=nil{
 				log.Println(err)
 				return
 			}
 			w.Header().Set("Content-Type", "image/x-icon")
 		case "/index.css":
-			bytes,err=ioutil.ReadFile("index.css")
+			filebytes,err=ioutil.ReadFile("index.css")
 			if err!=nil{
 				log.Println(err)
 				return
 			}
 			w.Header().Set("Content-Type", "text/css; charset=UTF-8")
 		case "/encoding-indexes.js":
-			bytes,err=ioutil.ReadFile("encoding-indexes.js")
+			filebytes,err=ioutil.ReadFile("encoding-indexes.js")
 			goto jshe
 		case "/encoding.js":
-			bytes,err=ioutil.ReadFile("encoding.js")
+			filebytes,err=ioutil.ReadFile("encoding.js")
 			goto jshe
 		case "/bundle.js":
-			bytes,err=ioutil.ReadFile("bundle.js")
+			filebytes,err=ioutil.ReadFile("bundle.js")
 			goto jshe
 		case "/bundle-bm.js":
-			bytes,err=ioutil.ReadFile("bundle-bm.js")
+			filebytes,err=ioutil.ReadFile("bundle-bm.js")
 			goto jshe
 		case "/cef9fd58ade54ca086ac66669f49dc86":
-			bytes,err=ioutil.ReadFile("bm.htm")
+			filebytes,err=ioutil.ReadFile("bm.htm")
 			goto htmhe
 		case "/":
-			bytes,err=ioutil.ReadFile("index.htm")
+			filebytes,err=ioutil.ReadFile("index.htm")
 			goto htmhe
 		default:
 			w.WriteHeader(404)
@@ -90,12 +90,12 @@ func handlerfunc(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/javascript; charset=UTF-8")//text/javascript for ie8?
 		goto writefilecont
 		writefilecont:
-		_,err=w.Write(bytes)
+		_,err=w.Write(filebytes)
 		if err!=nil{
 			log.Println(err)
 			return
 		}
-		return;
+		return
 	}
 
 	body, err:=ioutil.ReadAll(r.Body)
