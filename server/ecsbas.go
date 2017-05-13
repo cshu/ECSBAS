@@ -159,19 +159,21 @@ func main() {
 	if e_customizable==""{
 		usr, err := user.Current()
 		if err!=nil{
-			log.Fatalln(err)
+			log.Println(err)//log.fatal is rarely useful, use panic in most cases
+			return//panic(1)
 		}
 		e_customizable=filepath.Join(usr.HomeDir,"RESOURCE_STORE_COMM")
 	}
 	cstr := C.CString(e_customizable)
 	defer C.free(unsafe.Pointer(cstr))
 	if 0!=C.freopen_out_err(cstr){
-		return
+		return//panic(1)
 	}
 	///
 	logf,err:=os.OpenFile(filepath.Join(e_customizable,"ecsbas","_log","gostandard"),  os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)//without O_RDWR, log doesn't work on linux?
 	if err!=nil{
-		log.Fatalln(err);
+		log.Println(err);
+		return//panic(1)
 	}
 	defer logf.Close()
 	log.SetOutput(logf)
