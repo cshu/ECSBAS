@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "ECSBAS Bookmark Checker",
-	"version": "1.0",
+	"version": "1.1",
 	"applications": {
 		"gecko": {
 			"strict_min_version": "52.0"
@@ -14,23 +14,8 @@
 		"128": "icons/128.png"
 	},
 	"permissions": [
-		"*://*/*",
-		"activeTab",
-		"alarms",
-		"bookmarks",
-		"contextMenus",
-		"cookies",
-		"downloads",
-		"downloads.open",
-		"history",
-		"idle",
-		"nativeMessaging",
-		"notifications",
 		"storage",
-		"tabs",
-		"webNavigation",
-		"webRequest",
-		"webRequestBlocking"
+		"tabs"
 	],
 	"content_scripts": [
 		{

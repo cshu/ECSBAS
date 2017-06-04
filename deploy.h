@@ -70,6 +70,8 @@ void initecsbasdbobjects(void){
 	IF_LOG_THROW_0s
 	ib=sqlite3_exec(databaseA, "create table sp_videogames(i integer,a integer,rank blob,primary key(i,a,rank))without rowid", NULL, NULL, &zErrMsg);
 	IF_LOG_THROW_0s
+	ib=sqlite3_exec(databaseA, "create table sp_webfileobj(l blob,n blob,s blob,t blob,encoding blob,mark integer,primary key(l,n,s,t,encoding,mark))without rowid", NULL, NULL, &zErrMsg);
+	IF_LOG_THROW_0s
 	ib=sqlite3_exec(databaseA, "create table memoizedcfg_t(v text,k text,primary key(v,k))without rowid", NULL, NULL, &zErrMsg);//memoization OR cfg table
 	IF_LOG_THROW_0s
 	ib=sqlite3_exec(databaseA, "create table memoizedcfg_i(v integer,k text,primary key(v,k))without rowid", NULL, NULL, &zErrMsg);

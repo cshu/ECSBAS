@@ -239,6 +239,43 @@ void db(void)noexcept{
 				break;
 #					define OFF 2
 			case unusualcommands:{
+					switch(rb[1]){
+						//case 0:{//arbitrary sql//? is it better to respond with failure message instead of throw exception?
+						//	auto corb=rb+OFF;
+						//	auto sqlsi=strlen((char *)corb)+1;
+						//	INIT_TRYs(slw_prestmt sstmt(databaseA, corb, sqlsi);)
+						//	corb+=sqlsi;
+						//	for(int i=1;;++i){//undone
+						//		switch(*corb){
+						//			case '\0':
+						//				goto end_of_arbitrary_sql_binding;
+						//			case 'b':{//blob
+						//				auto blen=u32frombytesle(corb);
+						//				corb+=sizeof blen;
+						//				auto ib=sqlite3_bind_blob(sstmt.s.pstmt, i, corb,blen, SQLITE_TRANSIENT_STATIC_BEF_FIN);
+						//				if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
+						//				corb+=blen;
+						//			}break;
+						//			//case 'd'://double
+						//			case 'I':{//int64
+						//				sqlite3_int64 id;
+						//				memcpy(&id,corb,sizeof id);
+						//				auto ib=sqlite3_bind_int64(sstmt.s.pstmt, i, id);
+						//				if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
+						//				corb+=sizeof id;
+						//			}break;
+						//			case 't':{
+						//				auto slen=strlen((char *)corb);
+						//			}break;
+						//			//case 'z'://zeroblob
+						//		}
+						//	}
+						//	end_of_arbitrary_sql_binding:;
+						//	CATCH_SET_SUE_THROWs(;)
+						//}break;
+						case 1:{
+						}break;
+					}
 				}
 				break;
 			case bookmark:{
@@ -1181,7 +1218,7 @@ void db(void)noexcept{
 				}
 			case 73:{//diction (both thesaurus and dictionary)
 				}
-			case 128:{//generic search for anything//note cnf or dnf that is always true is the real implementation, but here only simplest entailment is implemented (entailment is the fake implementation, entailment doesn't really exit, long live normal forms)
+			case 128:{//generic search for anything//note cnf or dnf that is always true is the real implementation, but here only simplest entailment is implemented (entailment is the fake implementation, entailment doesn't really exist, long live normal forms)
 					//undone when you receive the query from client here, do you need it transformed to Normal Form already?
 					//probably no need to transform, it should be done at server side eventually anyway
 					//e.g. A v (B^C) you do all the traversal at serverside
@@ -2018,7 +2055,7 @@ void db(void)noexcept{
 								if(off==rl) break;
 								sqlite3_reset(sstmt.s.pstmt);
 								memcpy(&id,rb+off,sizeof id);
-								off+=8;
+								off+=sizeof id;
 							}
 							CATCH_SET_SUE_THROWs(;)
 							TEMPSINGLEARGPROPSWITHTMPTABANDCHKs
