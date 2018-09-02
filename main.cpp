@@ -2170,6 +2170,29 @@ void db(void)noexcept{
 					}
 				}
 				break;
+			case 170:{
+					switch(rb[1]){
+					case 0:
+						auto ffnmlen=strlen((char *)rb+OFF);
+						auto fullfilenm{u8path((char *)rb+OFF)};//optimize use InputIt
+						if(exists(fullfilenm)){
+							setresnotifyfe(LITERAL_COMMA_LEN("Filename exists"));
+							goto begin_db_l;
+						}
+						auto lengthuntilcontent=OFF+ffnmlen+1;
+						ofstream ofstre_(fullfilenm,ios_base::binary);
+						if(!ofstre_){setresnotifyfe(LITERAL_COMMA_LEN("ctor err"));goto begin_db_l;}
+						ofstre_.write((char *)rb+lengthuntilcontent,rl-lengthuntilcontent);
+						if(!ofstre_){setresnotifyfe(LITERAL_COMMA_LEN("write err"));goto begin_db_l;}
+						ofstre_.close();//dtor doesn't throw even if failbit is set
+						if(!ofstre_){setresnotifyfe(LITERAL_COMMA_LEN("dtor err"));goto begin_db_l;}
+						vb.clear();
+						break;
+					default:
+						LOG_ERRs throw 0;
+					}
+				}
+				break;
 			default:
 				LOG_ERRs throw 0;
 			}
