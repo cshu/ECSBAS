@@ -4,9 +4,11 @@ package main
 
 //note sdl2-config --cflags and sdl2-config --libs
 
+//previously used cgo LDFLAGS: -lstdc++fs -L/usr/lib/x86_64-linux-gnu -lSDL2 -L. -lsqlite3
+
 /*
-#cgo CXXFLAGS: -x c++ -std=c++14 -pedantic-errors -Wall -Wextra -Wshadow -I/usr/include/SDL2 -D_REENTRANT
-#cgo LDFLAGS: -lstdc++fs -L/usr/lib/x86_64-linux-gnu -lSDL2 -L. -lsqlite3
+#cgo CXXFLAGS: -x c++ -std=c++17 -pedantic-errors -Wall -Wextra -Wshadow -I/usr/include/SDL2 -Icpprs -D_REENTRANT
+#cgo LDFLAGS: -lstdc++fs -lSDL2 -L. -lsqlite3 -static-libgcc -static-libstdc++
 #include <stdlib.h>
 #include <libecsbas.h>
 */
