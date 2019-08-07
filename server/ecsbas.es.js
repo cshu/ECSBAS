@@ -805,7 +805,7 @@ function showwordgrouppage(id,fntextupdate,rowforremoval){
 			elem.appendChild(createAnchorClelemWithText('Delete')).onclick=function(){
 				confirmmsg('Delete the word group?',function(){
 					fnforesc();
-					postreqforarraybuffer(new Uint8Array([tc.wordsense,'d'.charCodeAt(0)]),function(){
+					postreqforarraybuffer(new Blob([new Uint8Array([tc.wordsense,'d'.charCodeAt(0)]),id]),function(){
 						if(rowforremoval)removeFromParentNode(rowforremoval);
 						fnforesc();
 					});
