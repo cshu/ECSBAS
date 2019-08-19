@@ -244,6 +244,7 @@ function postreqforarraybuffer(bloborarr,cb,secondarg){
 	xhr.setRequestHeader('Content-type','text/plain');//? no need to set charset=x-user-defined
 	xhr.setRequestHeader('Accept','*/*');
 	xhr.setRequestHeader('Accept-Language','*');
+	xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
 	//xhr.setRequestHeader('User-Agent','x');//?for now, it only works in firefox?
 	freezeui();
 	xhr.onreadystatechange = function () {
@@ -272,6 +273,7 @@ function postreqforarraybufferwofreezeunfreeze(bloborarr,cb,secondarg){
 	xhr.setRequestHeader('Content-type','text/plain');//? no need to set charset=x-user-defined
 	xhr.setRequestHeader('Accept','*/*');
 	xhr.setRequestHeader('Accept-Language','*');
+	xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
 	//xhr.setRequestHeader('User-Agent','x');//?for now, it only works in firefox?
 	xhr.onreadystatechange = function () {
 		if(xhr.readyState===XMLHttpRequest.DONE){

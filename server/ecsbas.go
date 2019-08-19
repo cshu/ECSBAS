@@ -25,6 +25,7 @@ import(
 	"sync"
 	"bytes"
 	"strings"
+//	"crypto/rand"
 )
 
 const TCP_PORT_ECSBAS_HTTP=":28422"
@@ -102,6 +103,7 @@ func handlerfunc(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if "XMLHttpRequest" != r.Header.Get("X-Requested-With") {return}//fixme this is merely a defense-in-depth measure, should still add token based defense
 	body, err:=ioutil.ReadAll(r.Body)
 	if err!=nil{
 		log.Println(err)
