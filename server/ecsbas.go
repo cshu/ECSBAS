@@ -8,7 +8,7 @@ package main
 
 /*
 #cgo CXXFLAGS: -x c++ -std=c++17 -pedantic-errors -Wall -Wextra -Wshadow -I/usr/include/SDL2 -Icpprs -D_REENTRANT
-#cgo LDFLAGS: -lstdc++fs -lSDL2 -L. -lsqlite3 -static-libgcc -static-libstdc++
+#cgo LDFLAGS: -lstdc++fs -lSDL2 -L. -lsqlite3 -static-libstdc++
 #include <stdlib.h>
 #include <libecsbas.h>
 */
