@@ -30,26 +30,26 @@ using namespace std;
 #include <cpprs.h>
 #include <cpprs_sqlite_mod.h>
 #include <tc.h>
-static sqlite3 *databaseA;
-static sqlite3_int64 availid;
-mutex logm;
-mutex fem;
-condition_variable fecv;
-mutex dbm;
-condition_variable dbcv;
-long long rl;
-unsigned char *rb;
+inline sqlite3 *databaseA;
+inline sqlite3_int64 availid;
+inline mutex logm;
+inline mutex fem;
+inline condition_variable fecv;
+inline mutex dbm;
+inline condition_variable dbcv;
+inline long long rl;
+inline unsigned char *rb;
 const void *res;
 int reslen;//0 no result, -1 db is already shut down, if<=-2 error
 #define RESLEN_NO_RESULT 0
 #define RESLEN_DB_ALREADY_SHUT_DOWN -1
 #define RESLEN_ERR -2
-unsigned char dbready;
+inline unsigned char dbready;
 #define DB_INIT_IN_PROGRESS 0
 #define DB_INIT_READY 1
 #define DB_INIT_ERR 2
-path e_customizable_p;
-path e_p;
+inline path e_customizable_p;
+inline path e_p;
 #define LOG_I_CIFNOTNULLSQLITEFREEs(i,c) {lock_guard<mutex> lgcs{logm};STD_CLOG_TIME_FILE_FUNC_LINE<<i;if(c){clog<<' '<<c;sqlite3_free(c);}clog<<'\n'<<std::flush;}
 #define LOG_I_Cs(i,c) {lock_guard<mutex> lgcs{logm};STD_CLOG_TIME_FILE_FUNC_LINE<<i<<' '<<c<<'\n'<<std::flush;}
 #define LOG_Is(i) {lock_guard<mutex> lgcs{logm};STD_CLOG_TIME_FILE_FUNC_LINE<<i<<'\n'<<std::flush;}

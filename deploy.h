@@ -20,7 +20,7 @@
 #define DESC_VERB_URL_CONTAINS_TEXT "URL"
 #define DESC_VERB_FILENAME_CONTAINS_TEXT "Filename"
 #define DESC_VERB_DESC_CONTAINS_TEXT "Desc"
-void initecsbasdbobjects(void){
+CPPRS_COMMON_SP void initecsbasdbobjects(void){
 	char *zErrMsg = nullptr;
 	int ib;
 #define IF_LOG_THROW_0s if(SQLITE_OK!=ib){LOG_I_CIFNOTNULLSQLITEFREEs(ib,zErrMsg) throw 0;}

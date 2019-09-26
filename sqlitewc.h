@@ -221,13 +221,13 @@ void selectprops(Tvb &vb,Tsens sens){
 	CATCH_SET_SUE_THROWs(;)\
 }
 
-sqlite3_int64 ret_avail_globalid(void){
+CPPRS_COMMON_SP sqlite3_int64 ret_avail_globalid(void){
 	auto vr=availid;
 	++availid;
 	return vr;
 }
 
-void update_avail_sense_id(void){
+CPPRS_COMMON_SP void update_avail_sense_id(void){
 	INIT_TRYs(slw_prestmt sstmt(databaseA, LITERAL_COMMA_SIZE("update memoizedcfg_i set v=? where k='AVAIL_SENSE_ID'"));)
 	auto ib=sqlite3_bind_int64(sstmt.s.pstmt, 1, availid);
 	if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
@@ -236,19 +236,19 @@ void update_avail_sense_id(void){
 	CATCH_SET_SUE_THROWs(;)
 }
 
-void begin_tr(void){
+CPPRS_COMMON_SP void begin_tr(void){
 	char *zErrMsg = nullptr;
 	auto ib=sqlite3_exec(databaseA, "BEGIN EXCLUSIVE", NULL, NULL, &zErrMsg);
 	if(SQLITE_OK!=ib){LOG_I_CIFNOTNULLSQLITEFREEs(ib,zErrMsg) throw 0;}
 }
 
-void end_tr(void){
+CPPRS_COMMON_SP void end_tr(void){
 	char *zErrMsg = nullptr;
 	auto ib=sqlite3_exec(databaseA, "COMMIT", NULL, NULL, &zErrMsg);
 	if(SQLITE_OK!=ib){LOG_I_CIFNOTNULLSQLITEFREEs(ib,zErrMsg) throw 0;}
 }
 
-void rb_tr(void){
+CPPRS_COMMON_SP void rb_tr(void){
 	char *zErrMsg = nullptr;
 	auto ib=sqlite3_exec(databaseA, "ROLLBACK", NULL, NULL, &zErrMsg);
 	if(SQLITE_OK!=ib){LOG_I_CIFNOTNULLSQLITEFREEs(ib,zErrMsg) throw 0;}
