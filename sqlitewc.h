@@ -258,7 +258,7 @@ CPPRS_COMMON_SP void rb_tr(void){
 ** must use INIT_TRYs and CATCH_SET_SUE_THROWs
 */
 struct dtor_sqlite_close{
-        ~dtor_sqlite_close()noexcept(false){
+        virtual ~dtor_sqlite_close()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		auto ib=sqlite3_close(databaseA);
 		if(SQLITE_OK!=ib){LOG_Is(ib) throw 0;}
@@ -271,7 +271,7 @@ struct dtor_sqlite_close{
 */
 struct dtor_sqlite_commit{
 	bool begun=false;
-	~dtor_sqlite_commit()noexcept(false){
+	virtual ~dtor_sqlite_commit()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		if(!begun)return;
 		end_tr();
@@ -283,7 +283,7 @@ struct dtor_sqlite_commit{
 ** must use INIT_TRYs and CATCH_SET_SUE_THROWs
 */
 struct dtor_update_avail_sense_id{
-	~dtor_update_avail_sense_id()noexcept(false){
+	virtual ~dtor_update_avail_sense_id()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		if(!availid)return;
 		update_avail_sense_id();
@@ -295,7 +295,7 @@ struct dtor_update_avail_sense_id{
 ** must use INIT_TRYs and CATCH_SET_SUE_THROWs
 */
 struct dtor_delete_from_tmptab_b0{
-	~dtor_delete_from_tmptab_b0()noexcept(false){
+	virtual ~dtor_delete_from_tmptab_b0()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		char *zErrMsg=nullptr;
 		auto ib=sqlite3_exec(databaseA,"delete from tmptab_b0", NULL, NULL, &zErrMsg);
@@ -307,7 +307,7 @@ struct dtor_delete_from_tmptab_b0{
 ** must use INIT_TRYs and CATCH_SET_SUE_THROWs
 */
 struct dtor_delete_from_tmptab_i0{
-	~dtor_delete_from_tmptab_i0()noexcept(false){
+	virtual ~dtor_delete_from_tmptab_i0()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		char *zErrMsg=nullptr;
 		auto ib=sqlite3_exec(databaseA,"delete from tmptab_i0", NULL, NULL, &zErrMsg);
@@ -319,7 +319,7 @@ struct dtor_delete_from_tmptab_i0{
 ** must use INIT_TRYs and CATCH_SET_SUE_THROWs
 */
 struct dtor_delete_from_tmptab_ii0{
-	~dtor_delete_from_tmptab_ii0()noexcept(false){
+	virtual ~dtor_delete_from_tmptab_ii0()noexcept(false){
 		AUTO_COPY_OF_SUE_CLEAR_SUE_TRYs
 		char *zErrMsg=nullptr;
 		auto ib=sqlite3_exec(databaseA,"delete from tmptab_ii0", NULL, NULL, &zErrMsg);

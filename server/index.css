@@ -99,6 +99,7 @@ table {
 				padding-bottom:3px;
 			}
 			a.clelem{
+				overflow-wrap: break-word;
 				/*color:#3a4386;*/
 				color: black;/*//use black bc sometimes you have clickable elements like td/label. Just use black so no need to tweak color*/
 				display:block;

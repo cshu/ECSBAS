@@ -396,8 +396,9 @@ void db(void)noexcept{
 									auto bmp=e_p;
 									bmp/="_bookmark";
 									bmp.append(filenm,filenm+filenmlen);
-									auto u8str=bmp.u8string();
-									vb.insert(vb.end(),(unsigned char *)u8str.c_str(),(unsigned char *)u8str.c_str()+u8str.size());
+									//auto u8str=bmp.u8string();
+									//vb.insert(vb.end(),(unsigned char *)u8str.c_str(),(unsigned char *)u8str.c_str()+u8str.size());
+									vb.insert(vb.end(), reinterpret_cast<const unsigned char*>(filenm), reinterpret_cast<const unsigned char*>(filenm) + filenmlen);
 									bmp+=".htm";
 									auto fsize=file_size(bmp);
 									if(fsize==rl-OFF-sizeof(uint32_t)-urllen){
