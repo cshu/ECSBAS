@@ -1,7 +1,7 @@
 # ECSBAS
 Local database of bookmarks, HTML archives, and note taking. (Tagged with verbs.)
 
-Usage: http://127.0.0.1:28422 is the default address to access from web browser. RESOURCE_STORE_COMM environment variable is used as the path to store all text notes, HTML archives, database, and logs. If RESOURCE_STORE_COMM is not set, home directory is used instead. Command line argument may specify an interface (with optional port) to listen on. E.g. 127.0.0.1 for local access, and 0.0.0.0 for public access. (Always listen on local interface. Don't use other interfaces unless you are sure it's secure!)
+Usage: http://127.0.0.1:28422 is the default address to access from web browser. ECSBAS_DATA_DIR environment variable is used as the path to store all text notes, HTML archives, database, and logs. If ECSBAS_DATA_DIR is not set, home directory is used instead. Command line argument may specify an interface (with optional port) to listen on. E.g. 127.0.0.1 for local access, and 0.0.0.0 for public access. (Always listen on local interface. Don't use other interfaces unless you are sure it's secure!)
 
 https://addons.mozilla.org/addon/ecsbas-bookmark-checker/
 

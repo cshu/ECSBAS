@@ -161,14 +161,14 @@ var listener net.Listener
 func main() {
 	//todo check new release and alert about downlaoding new version?
 	log.SetFlags(log.LstdFlags|log.Llongfile)
-	e_customizable:=os.Getenv("RESOURCE_STORE_COMM")
+	e_customizable:=os.Getenv("ECSBAS_DATA_DIR")
 	if e_customizable==""{
 		usr, err := user.Current()
 		if err!=nil{
 			log.Println(err)//log.fatal is rarely useful, use panic in most cases
 			return//panic(1)
 		}
-		e_customizable=filepath.Join(usr.HomeDir,"RESOURCE_STORE_COMM")
+		e_customizable=filepath.Join(usr.HomeDir,".ecsbas_data_dir")
 	}
 	cstr := C.CString(e_customizable)
 	defer C.free(unsafe.Pointer(cstr))

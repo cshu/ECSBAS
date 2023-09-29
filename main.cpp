@@ -562,7 +562,7 @@ void db(void)noexcept{
 				}
 				break;
 			case text_note:{
-					//Alternative implementation: default directory of text files is $RESOURCE_STORE_COMM/ecsbas/notes, and user can add any number of additional folder names to memoizedcfg_t or config file for choosing in GUI. (store in db table for the convenience of uploading/sync. store in config file for local machine preference.)
+					//Alternative implementation: default directory of text files is $ECSBAS_DATA_DIR/ecsbas/notes, and user can add any number of additional folder names to memoizedcfg_t or config file for choosing in GUI. (store in db table for the convenience of uploading/sync. store in config file for local machine preference.)
 					switch(rb[1]){
 					case (unsigned char)'f':
 						vb.clear();
@@ -2209,9 +2209,9 @@ struct dbthre{
 unsigned char freopen_out_err(char *efromgo){//undone change function name to freopenouterr_createdirifnotpresent
 	try{
 		lock_guard<mutex> lgp{dbm};
-		//char *e_customizable=getenv("RESOURCE_STORE_COMM");//you have only one env var to get, no need to avoid race
+		//char *e_customizable=getenv("ECSBAS_DATA_DIR");//you have only one env var to get, no need to avoid race
 		//if(!e_customizable){
-		//	clog<<"Environment variable 'RESOURCE_STORE_COMM' is not set.";
+		//	clog<<"Environment variable 'ECSBAS_DATA_DIR' is not set.";
 		//	//STD_CLOG_TIME_FILE_FUNC_LINE_FLUSH;
 		//	return 1;
 		//}
